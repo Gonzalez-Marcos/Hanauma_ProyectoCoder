@@ -1,7 +1,9 @@
 class Cliente {
-    constructor(nombre, password) {
+    constructor(nombre, password, dia, hora) {
         this.nombre = nombre;
         this.password = password;
+        this.dia = null;
+        this.hora = null
     }
 
     set_turno(dia, hora) {
@@ -15,12 +17,9 @@ const users = [];
 function alta_usuario() {
 
     let nombre_usuario = document.getElementById("nombre");
-    let pass_usuario = document.getElementById("pass");
-    let dia = document.getElementById("dia");
-    let hora = document.getElementById("hora");
+    let pass_usuario = document.getElementById("pass")
 
-
-    let usuario = new Cliente(nombre_usuario.value, pass_usuario.value, dia.value, hora.value);
+    let usuario = new Cliente(nombre_usuario.value, pass_usuario.value);
 
     users.push(usuario);
 
