@@ -10,11 +10,12 @@ body {
 }
 
 /*Header Container*/
+
 .header-container {
     /* border: 1px solid red; */
     background-color: #d8e2dc;
     margin-top: 50px;
-    /* padding: 10px 5px; */
+    padding: 10px 5px;
     text-align: center;
 }
 
@@ -87,6 +88,31 @@ body {
     /* border: 1px solid red; */
     width: 100%;
 }
+label{
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+#nombre, #pass {
+
+    width: 90%;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid;
+    padding: 20px;
+    margin-top: 10px;
+
+}
+
+#btn_registro,
+#btn_login{
+
+    padding: 13px;
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
 
 /* Mapa*/
 iframe {
@@ -109,6 +135,19 @@ iframe {
 
 /*Footer container*/
 
-footer-container{
-    /* border: 1px solid red; */
+.footer-container{
+    /* position: absolute; */
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+}
+
+@media (max-width: 768px){
+
+    
+
+}
+
+@media (max-width: 1024px){
+
 }

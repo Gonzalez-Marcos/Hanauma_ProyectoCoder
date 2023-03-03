@@ -1,123 +1,90 @@
-// let diaAtencion = "martes";
+class Cliente {
+    constructor(nombre, password) {
+        this.nombre = nombre;
+        this.password = password;
+    }
 
-// let horaApertura = 10;
+    set_turno(dia, hora) {
+        this.dia = dia;
+        this.hora = hora;
+    }
+}
 
-// let horaCierre = 18;
+const users = [];
 
-//Validamos si el Usuario ingresado está registrado o no
-// function usersRegister(user) {
+function alta_usuario() {
 
-//     if (user == users) {
-
-//         user = user.toLowerCase();
-
-//         return user
-
-//     } else {
-
-//         return alert("Debe estar registrado. Gracias.");
-//     }
-// }
-
-//Validamos si el dia elegido está disponible.
-// function diaTurno(dia) {
-
-//     dia = dia.toLowerCase();
-
-//     if (dia == diaAtencion) {
-
-//         return dia
-
-//     } else {
-
-//         return alert("Día seleccionado no disponible");
-//     }
-// }
-
-//Chequeamos que la hora ingresada sea dentro del horario donde se encuentra abierto.
-// function horaTurno(hora) {
-
-//     hora = parseInt(hora);
-
-//     if (hora >= horaApertura && hora <= horaCierre) {
-
-//         return hora
-
-//     } else {
-
-//         return alert("Horario no disponible")
-//     }
-// }
-
-//Inicializamos la pregunta si desea sacar o no un turno para entrar al While
-// let pregunta = " ";
-
-// pregunta = pregunta.toLowerCase();
-
-// pregunta = prompt("Desea set_tun turno? Si o No. ");
-
-// while (pregunta != "no") {
-
-//     //Atra vez de las variables recopilamos la info recibida por el usuario.
-//     let user = prompt("Ingrese usuario");
-
-//     let dia = prompt("Ingrese día. (Únicamente martes)");
-
-//     let hora = prompt("Ingrese un horario entre las 10 y 18 hs.")
-
-//     //Validamos que si todas las restricciones son verdaderas, se ejecuten los siguientes console log
-//     if (usersRegister(user) && diaTurno(dia) && horaTurno(hora)) {
-
-//         console.log("Su turno ha sido registrado.");
-//         console.log("");
-//         console.log("----Datos de su turno----");
-//         console.log("Nombre usuario: ", users);
-//         console.log("Día de turno: ", dia);
-//         console.log("Hora: ", hora);
-//         console.log("Gracias por su visita.");
-//         console.log("");
+    let nombre_usuario = document.getElementById("nombre");
+    let pass_usuario = document.getElementById("pass");
+    let dia = document.getElementById("dia");
+    let hora = document.getElementById("hora");
 
 
+    let usuario = new Cliente(nombre_usuario.value, pass_usuario.value, dia.value, hora.value);
 
-//         pregunta = prompt('Su turno ha sido registrado. Presione "Sí" si desea otro turno y "No" pasa salir');
+    users.push(usuario);
 
-//         continue;
+    let arreglo_JSON = JSON.stringify(users);
 
-//     }
+    localStorage.setItem("users", arreglo_JSON);
+}
 
-//     else {
-//         //En caso que no se pueda guardar el turno, saldrá el alert.
-//         alert("Muchas gracias por su visita =).")
-//     }
-//     pregunta = prompt("Desea set_tun turno? Si o No. ");
+function login_usuario() {
 
-// }
+    let array = JSON.parse(localStorage.getItem("users"));
 
-// /*class Client {
-//   constructor(firstName, lastName, shift) {
-//     this.firstName = firstName;
-//     this.lastName = lastName;
-//     this.shift = shift;
-//   }
-  
-//   getName() {
-//     return `${this.firstName} ${this.lastName}`;
-//   }
-  
-//   getShift() {
-//     return `${this.shift.day} at ${this.shift.time}`;
-//   }
-// }
+    let nombre_usuario = document.getElementById("nombre").value;
 
-// class Shift {
-//   constructor(day, time) {
-//     this.day = day;
-//     this.time = time;
-//   }
-// }
+    let pass_usuario = document.getElementById("pass").value;
 
-// const myShift = new Shift("Monday", "9:00 AM");
-// const myClient = new Client("John", "Doe", myShift);
+    for (let usuario of array) {
 
-// console.log(myClient.getName()); // Output: John Doe
-// console.log(myClient.getShift()); // Output: Monday at 9:00 AM
+        if (nombre_usuario == usuario.nombre && pass_usuario == usuario.password) {
+
+            let main = document.getElementById("main");
+
+            main.innerHTML = `
+                <h1 class="bienvenida">Bienvenido/a al sistema ${usuario.nombre}</h1>
+                <label for="">¿Desea solicitar un turno en Hanauma?</label>
+                <input type="date" id ="dia" class="dia">
+                <input type="time" id="hora" class="hora">
+                <button class="btn_turno" id="btn_turno">Guardar</button>
+                <a href="index.html" class="volver"><=  Volver</a>`;
+
+            let btn_turno = document.getElementById("btn_turno");
+
+            btn_turno.addEventListener("click", function () {
+
+                let dia = document.getElementById("dia").value;
+
+                let hora = document.getElementById("hora").value;
+
+                usuario.set_turno(dia, hora);
+
+                let arreglo_JSON = JSON.stringify(array);
+
+                localStorage.setItem("users", arreglo_JSON);
+
+                alert("Turno guardado correctamente.");
+
+                console.log(arreglo_JSON);
+            });
+
+            break;
+
+        } else {
+
+            main.innerHTML = `
+                <h1 class="bienvenida">Usuario no encontrado ${nombre_usuario}</h1>
+                <a href="users.html" class="volver"><=  Registrarse</a>`;
+        }
+    }
+}
+
+let btn_registro = document.getElementById("btn_registro");
+
+let btn_login = document.getElementById("btn_login");
+
+btn_registro.addEventListener("click", alta_usuario);
+
+btn_login.addEventListener("click", login_usuario);

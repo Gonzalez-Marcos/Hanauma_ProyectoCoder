@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/users.css">
     <title>Hanauma</title>
 </head>
 
@@ -17,21 +18,30 @@
                 <ul class="header-list">
                     <li class="header-list-right"><a class="heaer-list-ref" href="#">¿Quienes Somos?</a></li>
                     <li class="header-list-right"><a class="heaer-list-ref" href="#">¿Dónde estamos?</a></li>
-                    <li class="header-list-right"><a class="heaer-list-ref" href="users.html">Ingresar </a> </li>
+                    <li class="header-list-right"><a class="heaer-list-ref" href="#">Ingresar </a> </li>
                 </ul>
             </nav>
         </div>
     </header>
-    <main class="main-container">
-        <ul class="gallery">
-            <li class="li-carrousel" style="background: #f6bd60;"><img class="img-carrousel" src="images/carrousel.jpg" alt="" srcset=""></li>
-            <li class="li-carrousel" style="background: #f7ede2;"><img class="img-carrousel" src="images/carrousel1.jpg" alt="" srcset=""></li>
-            <li class="li-carrousel" style="background: #f5cac3;"><img class="img-carrousel" src="images/carrousel2.jpg" alt="" srcset=""></li>
-            <li class="li-carrousel" style="background: #84a59d;"><img class="img-carrousel" src="images/carrousel3.jpg" alt="" srcset=""></li>
-            <li class="li-carrousel" style="background: #f28482;"><img class="img-carrousel" src="images/carrousel4.jpg" alt="" srcset=""></li>
-        </ul>
+    <main class="main-container bienvenida" id ="main">
 
-        <iframe class="instagram-frame" src="https://www.instagram.com/p/Cny6jdbO3KN/embed" frameborder="0"></iframe>
+        <div class="user">
+            <label for="">Nombre</label>
+            <input type="text" id="nombre" placeholder="Ingrese su nombre" required>
+            <br>
+
+            <label for="">Contraseña</label>
+            <input type="text" id="pass" placeholder="Ingrese su contraseña" required>
+
+            <br>
+
+            <button id="btn_registro">Registrate</button>
+
+            <br>
+
+            <button id="btn_login">Ingresar</button>
+        </div>
+
     </main>
     <footer class="footer-container">
         <iframe class="googleMaps"
@@ -39,8 +49,8 @@
             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
     </footer>
-    <!-- <script src="js/condicion1.js"></script> -->
-    <script src="js/carrousel.js"></script>
+    <!-- <script src="js/dom.js"></script> -->
+    <script src="js/condicion.js"></script>
 </body>
 
 </html>
