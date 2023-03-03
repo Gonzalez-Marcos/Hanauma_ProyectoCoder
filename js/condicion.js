@@ -2,13 +2,8 @@ class Cliente {
     constructor(nombre, password, dia, hora) {
         this.nombre = nombre;
         this.password = password;
-        this.dia = null;
-        this.hora = null
-    }
-
-    set_turno(dia, hora) {
         this.dia = dia;
-        this.hora = hora;
+        this.hora = hora
     }
 }
 
@@ -58,14 +53,19 @@ function login_usuario() {
 
                 let hora = document.getElementById("hora").value;
 
-                usuario.set_turno(dia, hora);
+                usuario.dia = dia;
+
+                usuario.hora = hora;
 
                 let arreglo_JSON = JSON.stringify(array);
 
                 localStorage.setItem("users", arreglo_JSON);
 
-                alert("Turno guardado correctamente.");
-
+                main.innerHTML = `<h2 class="bienvenida">Su turno ha sido guardado con éxito!</h2>
+                <p>Nombre: ${nombre_usuario}</p>
+                <p>Dia del turno: ${dia}</p>
+                <p>Hora del turno: ${hora}</p>
+                <a href="index.html" class="volver"><=  Salir</a>`
                 console.log(arreglo_JSON);
             });
 
