@@ -1,3 +1,4 @@
+/* inicializo la clase cliente*/
 class Cliente {
     constructor(nombre, password, dia, hora) {
         this.nombre = nombre;
@@ -6,9 +7,10 @@ class Cliente {
         this.hora = hora
     }
 }
-
+/*Creamos el array de usuarios donde luego seran almacenados*/
 const users = [];
 
+/*Funcion para dar de alta un usuario y almacenar en el LocalStorage*/
 function alta_usuario() {
 
     let nombre_usuario = document.getElementById("nombre");
@@ -23,6 +25,7 @@ function alta_usuario() {
     localStorage.setItem("users", arreglo_JSON);
 }
 
+/* Funcion para validar usuario y poder ingresar para sacar turno en el mismo*/
 function login_usuario() {
 
     let array = JSON.parse(localStorage.getItem("users"));
@@ -80,6 +83,7 @@ function login_usuario() {
     }
 }
 
+/*Lista de eventos donde se aplica cada funcion dependiendo donde se produzca*/
 let btn_registro = document.getElementById("btn_registro");
 
 let btn_login = document.getElementById("btn_login");
