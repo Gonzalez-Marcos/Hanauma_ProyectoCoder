@@ -56,20 +56,29 @@ function login_usuario() {
 
                 let hora = document.getElementById("hora").value;
 
-                usuario.dia = dia;
+                if (validarDiaHora(dia, hora)) {
 
-                usuario.hora = hora;
+                    usuario.dia = dia;
+                    usuario.hora = hora;
 
-                let arreglo_JSON = JSON.stringify(array);
+                    let arreglo_JSON = JSON.stringify(array);
 
-                localStorage.setItem("users", arreglo_JSON);
+                    localStorage.setItem("users", arreglo_JSON);
 
-                main.innerHTML = `<h2 class="bienvenida">Su turno ha sido guardado con éxito!</h2>
-                <p>Nombre: ${nombre_usuario}</p>
-                <p>Dia del turno: ${dia}</p>
-                <p>Hora del turno: ${hora}</p>
-                <a href="index.html" class="volver"><=  Salir</a>`
-                console.log(arreglo_JSON);
+                    main.innerHTML = `
+                        <h2 class="bienvenida">Su turno ha sido guardado con éxito!</h2>
+                        <p>Nombre: ${nombre_usuario}</p>
+                        <p>Dia del turno: ${dia}</p>
+                        <p>Hora del turno: ${hora}</p>
+                        <a href="index.html" class="volver"><=  Salir</a>`
+
+                } else {
+
+                    main.innerHTML = `
+                                <h2 class="bienvenida">"El día y la hora deben estar entre lunes y viernes y entre las 10 y las 18 horas.</h2>
+                                <a href="users.html" class="volver"><=  Salir</a>`;
+
+                }
             });
 
             break;
@@ -81,6 +90,13 @@ function login_usuario() {
                 <a href="users.html" class="volver"><=  Registrarse</a>`;
         }
     }
+}
+
+function validarDiaHora(dia, hora) {
+    let fecha = new Date(dia);
+    let diaSemana = fecha.getDay();
+    let horaNum = parseInt(hora.replace(":", ""));
+    return diaSemana >= 1 && diaSemana <= 5 && horaNum >= 1000 && horaNum <= 1800;
 }
 
 /*Lista de eventos donde se aplica cada funcion dependiendo donde se produzca*/
